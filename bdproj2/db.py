@@ -6,8 +6,8 @@ import subprocess
 # Change this if necessary
 CONFIG = {
   'DB': 'RAINBOW_SIX',
-  'USER': 'Ori',
-  'PASSWORD': 'Gnar4229',
+  'USER': 'root',
+  'PASSWORD': 'elenapoof',
   'HOST': '127.0.0.1',
   'PORT': 3306,
   'CHARSET': 'utf8'

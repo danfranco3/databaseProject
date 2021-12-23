@@ -29,3 +29,27 @@ def list_operators():
             ORDER BY OPERATOR.Name;
             ''').fetchall()
         return render_template('operator-list.html', operators=operators)
+
+
+""" # Rounds
+@APP.route('/rounds/')
+def list_rounds():
+        rounds = db.execute(
+            '''
+            SELECT RD.IdMatch AS Match_Id, RD.IdRound AS Round_Id, RD.RoundWinner AS Round_Winner, OP.Name AS Operator, S.K AS Kills, S.D AS Deaths, S.A AS Assists
+            FROM RD, OPERATOR OP, SELECTED S
+            WHERE OP.IdOper = S.IdOper AND S.IdRound = RD.IdRound;
+            ''').fetchall()
+            
+        return render_template('round-list.html', rounds=rounds) """
+
+# Rounds
+@APP.route('/rounds/')
+def list_rounds():
+        rounds = db.execute(
+            '''
+            SELECT RD.IdMatch AS Match_Id, RD.IdRound AS Round_Id, RD.RoundWinner AS Round_Winner
+            FROM RD;
+            ''').fetchall()
+            
+        return render_template('round-list.html', rounds=rounds)

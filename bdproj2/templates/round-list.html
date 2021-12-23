@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Rounds{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+    <tr>
+        <th><b>Match Id</b></th>
+        <th><b>Round</b></th>
+        <th><b>Round Winner</b></th>
+    </tr>
+
+    {% for round in rounds %}
+        <tr>
+            <td><a href="/match/{{ round.IdMatch }}">{{ round.Match_Id }}</a></td>
+            <td><a href="/rounds/{{ round.IdRound }}">{{ round.Round_Id }}</a></td>
+            <td>{{ round.Round_Winner }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a style="color: grey;">*A stands for Attacker and D for Defender</a>
+{% endblock %}
