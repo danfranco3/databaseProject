@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Operator info</h2>
+    <h2>Profile</h2>
     <p>
-        <b>OperatorId: </b>{{ operator.IdOper }}
+        <b>Id: </b>{{ operator.IdOper }}
     </p>
     <p>
         <b>Operator: </b>{{ operator.Operator }}
@@ -44,7 +44,7 @@
     </p>
 
     <p>
-        <b>Select in this Rounds: </b><u1>
+        <b>Selected in rounds: </b><u1>
         {% for s in selected %}
             <li><a href="/round/{{ s.IdRound }}">{{ s.IdRound }}</a></li> 
         {% endfor %}   
