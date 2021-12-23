@@ -18,13 +18,8 @@
     <p>
         <b>Device: </b>{{ operator.Device }}
     </p>
-
     <p>
-        <b>Organization: </b><u1>
-        {% for o in organization %}
-            <li><a href="/organization/{{ o.IdOrg }}">{{ o.Name }}</a></li> 
-        {% endfor %}   
-        </u1>
+        <b>Organization: </b><a href = "https://rainbowsix.fandom.com/wiki/BOPE">{{ organization.Name }}</a>
     </p>
 
     <p>
