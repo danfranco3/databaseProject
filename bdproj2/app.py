@@ -26,6 +26,48 @@ def list_operators():
             '''
             SELECT IdOper, OPERATOR.Name as Operator, Type, ORGANIZATION.Name as Organization
             FROM OPERATOR JOIN ORGANIZATION USING(IdOrg)
-            ORDER BY OPERATOR.Name;
+            ORDER BY OPERATOR.Name
             ''').fetchall()
         return render_template('operator-list.html', operators=operators)
+
+@APP.route('/operators/<int:id>/')
+def get_operator(id):
+    operator = db.execute(
+    '''
+    SELECT IdOper, Name as Operator, Type, Device
+    FROM OPERATOR 
+    WHERE IdOper = %s
+    ''', id).fetchone()
+
+    if operator is None:
+        abort(404, 'Operator id {} does not exist'.format(id))
+    
+    organization = db.execute(
+    '''    
+    SELECT IdOrg, ORGANIZATION.Name 
+    FROM ORGANIZATION JOIN OPERATOR USING(IdOrg)
+    WHERE IdOper = %s
+    ''',id).fetchall()
+
+    gadget = db.execute(
+    '''    
+    SELECT IdGad, GADGET.Name 
+    FROM GADGET JOIN OPERATOR USING(IdGad)
+    WHERE IdOper = %s
+    ''',id).fetchall()
+
+    weapon = db.execute(
+    '''    
+    SELECT IdOrg, WEAPON.Name 
+    FROM WEAPON JOIN OPERATOR USING(IdWp)
+    WHERE IdOper = %s
+    ''',id).fetchall()
+
+    selected = db.execute(
+    '''    
+    SELECT IdOper,IdRound
+    FROM SELECTED NATURAL JOIN OPERATOR 
+    WHERE IdOper = %s
+    ''',id).fetchall()
+    return render_template('operator.html',
+        operator=operator, organization=organization, gadget=gadget, weapon=weapon, selected=selected)

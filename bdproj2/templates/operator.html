@@ -1,1 +1,54 @@
-DDDDD
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}{{ operator.Operator }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Operator info</h2>
+    <p>
+        <b>OperatorId: </b>{{ operator.IdOper }}
+    </p>
+    <p>
+        <b>Operator: </b>{{ operator.Operator }}
+    </p>
+    <p>
+        <b>Type: </b>{{ operator.Type }}
+    </p>
+    <p>
+        <b>Device: </b>{{ operator.Device }}
+    </p>
+
+    <p>
+        <b>Organization: </b><u1>
+        {% for o in organization %}
+            <li><a href="/organization/{{ o.IdOrg }}">{{ o.Name }}</a></li> 
+        {% endfor %}   
+        </u1>
+    </p>
+
+    <p>
+        <b>Gadget: </b><u1>
+        {% for g in gadget %}
+            <li><a href="/gadget/{{ g.IdGad }}">{{ g.Name }}</a></li> 
+        {% endfor %}   
+        </u1>
+    </p>
+
+    <p>
+        <b>Weapon: </b><u1>
+        {% for w in weapon %}
+            <li><a href="/weapon/{{ w.IdWp }}">{{ w.Name }}</a></li> 
+        {% endfor %}   
+        </u1>
+    </p>
+
+    <p>
+        <b>Select in this Rounds: </b><u1>
+        {% for s in selected %}
+            <li><a href="/round/{{ s.IdRound }}">{{ s.IdRound }}</a></li> 
+        {% endfor %}   
+        </u1>
+    </p>
+
+{% endblock %}
