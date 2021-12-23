@@ -53,6 +53,7 @@ def list_rounds():
             ''').fetchall()
             
         return render_template('round-list.html', rounds=rounds)
+
 @APP.route('/operators/<int:id>/')
 def get_operator(id):
     operator = db.execute(
@@ -70,7 +71,7 @@ def get_operator(id):
     SELECT IdOrg, ORGANIZATION.Name 
     FROM ORGANIZATION JOIN OPERATOR USING(IdOrg)
     WHERE IdOper = %s
-    ''',id).fetchall()
+    ''',id).fetchone()
 
     gadget = db.execute(
     '''    
