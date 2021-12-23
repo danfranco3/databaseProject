@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}RainbowSixSiege dabatabe {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<h2>About</h2>
+<p>This is a web application that illustrate the use of the
+RainbowSixSiege dabatase. I hope you enjoy the journey.
+</p>
+
+<h2>Some database statistics</h2>
+<table>
+<tr>
+  <th>Tables</th>
+  <th>Count</th>
+</tr>
+<tr>
+  <td>Operators</td>
+  <td>{{ stats.operators }}</td>
+</tr>  
+<tr>
+  <td>Matchs</td>
+  <td>{{ stats.matchs }}</td>
+</tr>
+<tr>
+  <td>Rounds</td>
+  <td>{{ stats.rounds }}</td>
+</tr>
+</table>
+
+<h2>Sample functionality</h2>
+
+<h3>Operators</h3>
+<p>
+    <a href="/operators">List all</a>
+</p>
+
+
+This is the entry page for the application! This is gonna be fun!
+
+{% endblock %}

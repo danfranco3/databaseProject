@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Operators{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+    <tr>
+        <th><b>Operator</b></th>
+        <th><b>Type</b></th>
+        <th><b>Organization</b></th>
+    </tr>
+
+    {% for operator in operators}
+        <tr>
+            <td><a href="/operators/{{ operator.IdOper }}">{{ operator.Operator }}</a></td>
+            <td>{{ operator.Type }}</td>
+            <td>{{ operator.Organization }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
