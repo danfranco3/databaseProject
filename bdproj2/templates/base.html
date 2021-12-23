@@ -1,11 +1,13 @@
 <!doctype html>
 <title>{% block title %}{% endblock %}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <a href="/">
-    <img src="static/home.png" width="32" height="32">
-    </a> 
-</nav>
+<h2>
+  <nav>
+    <a href="/">
+        <img src="static/home.png" width="32" height="32">
+      </a>
+  </nav>
+</h2>
 <section class="content">
   <header>
     {% block header %}{% endblock %}
