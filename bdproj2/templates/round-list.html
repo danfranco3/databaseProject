@@ -14,8 +14,8 @@
 
     {% for round in rounds %}
         <tr>
-            <td><a href="/match/{{ round.IdMatch }}">{{ round.Match_Id }}</a></td>
-            <td><a href="/rounds/{{ round.IdRound }}">{{ round.Round_Id }}</a></td>
+            <td><a href="/matchs/{{ round.Match_Id }}">{{ round.Match_Id }}</a></td>
+            <td><a href="/rounds/{{ round.Round_Id }}">{{ round.Round_Id }}</a></td>
             <td>{{ round.Round_Winner }}</td>
         </tr>
     {% endfor %}
