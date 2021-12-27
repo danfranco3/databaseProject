@@ -19,7 +19,7 @@
         <b>Device: </b>{{ operator.Device }}
     </p>
     <p>
-        <b>Organization: </b><a href = "https://rainbowsix.fandom.com/wiki/BOPE">{{ organization.Name }}</a>
+        <b>Organization: </b>{{ organization.Name }}
     </p>
 
     <p>
@@ -39,9 +39,9 @@
     </p>
 
     <p>
-        <b>Selected in rounds: </b><u1>
+        <b>Selected in these rounds: </b><u1>
         {% for s in selected %}
-            <li><a href="/round/{{ s.IdRound }}">{{ s.IdRound }}</a></li> 
+            <li><a href="/rounds/{{ s.IdRound }}">{{ s.IdRound }}</a></li> 
         {% endfor %}   
         </u1>
     </p>

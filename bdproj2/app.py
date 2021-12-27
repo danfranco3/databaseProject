@@ -30,6 +30,25 @@ def list_operators():
             ''').fetchall()
         return render_template('operator-list.html', operators=operators)
 
+# Rounds
+@APP.route('/rounds/')
+def list_rounds():
+        rounds = db.execute(
+            '''
+            SELECT RD.IdMatch AS Match_Id, RD.IdRound AS Round_Id, RD.RoundWinner AS Round_Winner
+            FROM RD
+            ''').fetchall()
+        return render_template('round-list.html', rounds=rounds)
+
+#Matchs
+@APP.route('/matchs/')
+def list_match():
+    matchs = db.execute(
+        '''
+        SELECT IdMatch, Start, End, Status, MVP, MVPPOINTS, IdMap, Name
+        FROM MATCH_R6 NATURAL JOIN MAP   
+        ''').fetchall()
+    return render_template('match-list.html', matchs=matchs)
 
 """ # Rounds
 @APP.route('/rounds/')
@@ -43,16 +62,7 @@ def list_rounds():
             
         return render_template('round-list.html', rounds=rounds) """
 
-# Rounds
-@APP.route('/rounds/')
-def list_rounds():
-        rounds = db.execute(
-            '''
-            SELECT RD.IdMatch AS Match_Id, RD.IdRound AS Round_Id, RD.RoundWinner AS Round_Winner
-            FROM RD;
-            ''').fetchall()
-            
-        return render_template('round-list.html', rounds=rounds)
+
 
 @APP.route('/operators/<int:id>/')
 def get_operator(id):
@@ -95,3 +105,22 @@ def get_operator(id):
     ''',id).fetchall()
     return render_template('operator.html',
         operator=operator, organization=organization, gadget=gadget, weapon=weapon, selected=selected)
+
+@APP.route('/rounds/<int:id>/')
+def get_round(id):
+    round = db.execute(
+    '''  
+    SELECT IdRound, RoundWinner, IdMatch
+    FROM RD WHERE IdRound = %s
+    ''', id).fetchone()
+
+    selected = db.execute(
+    '''
+    SELECT IdRound, K, D, A, IdOper, Name, Type
+    FROM RD NATURAL JOIN SELECTED NATURAL JOIN OPERATOR
+    WHERE IdRound = %s 
+    ''', id).fetchall()
+
+    return render_template('round.html', round=round, selected=selected)
+
+

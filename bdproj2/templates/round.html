@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Round {{ round.IdRound }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Description</h2>
+    <p>
+        <b>IdMatch: </b><a href="/matchs/{{ round.IdMatch }}">{{ round.IdMatch }}</a>
+    </p>
+    <p>
+        <b>Round Winner: </b>{{ round.RoundWinner}}
+    </p>
+
+    <h2>Participants in this Round and Their K/D/A</h2>
+    <table>
+    <tr>
+        <th><b>Name</b></th>
+        <th><b>Type</b></th>
+        <th><b>Kills</b></th>
+        <th><b>Deaths</b></th>
+        <th><b>Assistances</b></th>
+    </tr>
+    
+    {% for row in selected %}
+    <tr>
+        <td><a href="/operators/{{ row.IdOper }}">{{ row.Name }}</a></td>
+        <td>{{ row.Type }}</td>
+        <td>{{ row.K }}</td>
+        <td>{{ row.D }}</td>
+        <td>{{ row.A }}</td>
+    </tr>
+
+    {% endfor %}
+    </table>
+    <a style="color: grey;">*A stands for Attacker and D for Defender</a>
+{% endblock %}
+
+
+    

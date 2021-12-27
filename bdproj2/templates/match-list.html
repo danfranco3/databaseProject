@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Matchs{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th><b>MatchId</b></th>
+            <th><b>Start</b></th>
+            <th><b>End</b></th>
+            <th><b>Status</b></th>
+            <th><b>Best Player</b></th>
+            <th><b>Points</b></th>
+            <th><b>Map</b></th>
+        </tr>
+    {% for match in matchs %}
+        <tr>
+            <td>{{ match.IdMatch }}</td>
+            <td>{{ match.Start }}</td>
+            <td>{{ match.End }}</td>
+            <td>{{ match.Status }}</td>
+            <td><a href="/operators/{{ match.MVP }}">{{ match.MVP }}</a></td>
+            <td>{{ match.MVPPOINTS }}</td>
+            <td><a href="/maps/{{ match.IdMap }}">{{ match.Name }}</a></td>
+        </tr>
+    {% endfor %}
+    </table>   
+{% endblock %}
