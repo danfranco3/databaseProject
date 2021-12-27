@@ -139,4 +139,14 @@ def get_match(id):
         ''', id).fetchall()
     return render_template('match.html', match=match, rounds=rounds)
 
-
+@APP.route('/operators/search/<expr>/')
+def search_operator(expr):
+    search = { 'expr': expr }
+    expr = '%' + expr + '%'
+    operators = db.execute(
+        '''
+        SELECT IdOper, Name 
+        FROM OPERATOR
+        WHERE Name LIKE %s
+        ''', expr).fetchall()
+    return render_template('operator-search.html', search=search, operators=operators)

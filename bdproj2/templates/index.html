@@ -38,6 +38,13 @@ Rainbow Six Siege database. I hope you enjoy the journey.
     <a href="/operators">List all</a>
 </p>
 
+<p>Search by name:
+  <form name="osearch" action="javascript:window.open('/operators/search/'+document.forms['osearch'].elements['expr'].value,'_self')">
+    <input name="expr" id="expr" value="" required/>
+    <input type="submit" value="search"/>
+  </form>
+</p>
+
 <h3>Rounds</h3>
 <p>
   <a href = "/rounds">List all</a>
