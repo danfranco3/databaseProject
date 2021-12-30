@@ -50,20 +50,6 @@ def list_match():
         ''').fetchall()
     return render_template('match-list.html', matches=matches)
 
-""" # Rounds
-@APP.route('/rounds/')
-def list_rounds():
-        rounds = db.execute(
-            '''
-            SELECT RD.IdMatch AS Match_Id, RD.IdRound AS Round_Id, RD.RoundWinner AS Round_Winner, OP.Name AS Operator, S.K AS Kills, S.D AS Deaths, S.A AS Assists
-            FROM RD, OPERATOR OP, SELECTED S
-            WHERE OP.IdOper = S.IdOper AND S.IdRound = RD.IdRound;
-            ''').fetchall()
-            
-        return render_template('round-list.html', rounds=rounds) """
-
-
-
 @APP.route('/operators/<int:id>/')
 def get_operator(id):
     operator = db.execute(
@@ -92,10 +78,10 @@ def get_operator(id):
 
     weapon = db.execute(
     '''    
-    SELECT IdOrg, WEAPON.Name 
+    SELECT IdOrg, WEAPON.Name AS Weapon 
     FROM WEAPON JOIN OPERATOR USING(IdWp)
     WHERE IdOper = %s
-    ''',id).fetchall()
+    ''',id).fetchone()
 
     selected = db.execute(
     '''    
@@ -127,7 +113,7 @@ def get_round(id):
 def get_match(id):
     match = db.execute(
         '''
-        SELECT IdMatch, Start, End, Status, MVP, MVPPOINTS, MAP.Name as Map, IdOper
+        SELECT IdMatch, Start, End, Status, MVP, MVPPOINTS, MAP.Name as Map, IdOper, OPERATOR.Name
         FROM MATCH_R6 NATURAL JOIN MAP, OPERATOR
         WHERE IdMatch = %s AND OPERATOR.Name = MVP
         ''', id).fetchone()
@@ -175,3 +161,14 @@ def get_selections():
         ORDER BY N DESC, Name
         ''').fetchall()
     return render_template('operators-selections.html', selections=selections)
+
+@APP.route('/operators/kills/')
+def get_listkill():
+    kills = db.execute(
+        '''
+        SELECT IdRound, COUNT(*) AS N, RoundWinner
+        FROM SELECTED NATURAL JOIN OPERATOR NATURAL JOIN RD
+        WHERE K>0 AND Type = RoundWinner
+        GROUP BY IdRound
+        ''').fetchall()
+    return render_template('operators-kills.html', kills=kills)
