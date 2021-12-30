@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Count of winning operators with at least one kill (per round){% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th><b>Round</b></th>
+            <th><b>N</b></th>
+            <th><b>Round Winner</b></th>
+        </tr>
+    {% for kill in kills %}
+        <tr>
+            <td><a href="/rounds/{{ kill.IdRound }}">{{ kill.IdRound }}</a></td>
+            <td>{{ kill.N }}</td>
+            <td>{{ kill.RoundWinner }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a style="color: grey;">A stands for Attacker and D for Defender</a>
+{% endblock %}
