@@ -85,10 +85,10 @@ def get_operator(id):
 
     gadget = db.execute(
     '''    
-    SELECT IdGad, GADGET.Name 
+    SELECT IdGad, GADGET.Name as Gadget
     FROM GADGET JOIN OPERATOR USING(IdGad)
     WHERE IdOper = %s
-    ''',id).fetchall()
+    ''',id).fetchone()
 
     weapon = db.execute(
     '''    
