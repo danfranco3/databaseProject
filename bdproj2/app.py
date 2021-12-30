@@ -12,7 +12,7 @@ def index():
     stats = {}
     x = db.execute('SELECT COUNT(*) AS operators FROM OPERATOR').fetchone()
     stats.update(x)
-    x = db.execute('SELECT COUNT(*) AS matchs FROM MATCH_R6').fetchone()
+    x = db.execute('SELECT COUNT(*) AS matches FROM MATCH_R6').fetchone()
     stats.update(x)
     x = db.execute('SELECT COUNT(*) AS rounds FROM RD').fetchone()
     stats.update(x)
