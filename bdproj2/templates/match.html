@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Match {{ match.IdMatch }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Description</h2>
+    <p>
+        <b>Start: </b>{{ match.Start }}
+    </p>
+    <p>
+        <b>End: </b>{{ match.End }}
+    </p>
+    <p>
+        <b>Status: </b>{{ match.Status }}
+    </p>
+    <p>
+        <b>Map: </b><a href="/maps/{{ match.IdMap }}">{{ match.Map }}</a>
+    </p>
+    <p>
+        <b>Most Valuable Player:</b><u1>
+            <li><a href="/operators/{{ match.IdOper }}">{{ match.MVP }}</a> Pontuation: {{ match.MVPPOINTS }}</li>
+        </u1>
+    </p>
+    <p>
+        <b>Rounds of this match:</b><u1>
+        {% for round in rounds %}
+            <li><a href="/rounds/{{ round.IdRound }}">{{ round.IdRound }}</a></li>
+        {% endfor %}    
+        </u1>
+    </p>
+{% endblock %}

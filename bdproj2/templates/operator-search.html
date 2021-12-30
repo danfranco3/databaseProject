@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ search.expr }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <h2>Search results</h2>
+    <p><u1>
+        {% for operator in operators %}
+        <li><a href="/operators/{{ operator.IdOper }}">{{ operator.Name }}</a></li>
+        {% endfor %}
+        </u1>
+    </p>
+{% endblock %}

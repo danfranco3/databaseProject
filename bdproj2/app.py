@@ -45,7 +45,7 @@ def list_rounds():
 def list_match():
     matchs = db.execute(
         '''
-        SELECT IdMatch, Start, End, Status, MVP, MVPPOINTS, IdMap, Name
+        SELECT IdMatch, Start, End, Status, IdMap, Name
         FROM MATCH_R6 NATURAL JOIN MAP   
         ''').fetchall()
     return render_template('match-list.html', matchs=matchs)
@@ -123,4 +123,30 @@ def get_round(id):
 
     return render_template('round.html', round=round, selected=selected)
 
+@APP.route('/matchs/<int:id>/')
+def get_match(id):
+    match = db.execute(
+        '''
+        SELECT IdMatch, Start, End, Status, MVP, MVPPOINTS, MAP.Name as Map, IdOper
+        FROM MATCH_R6 NATURAL JOIN MAP, OPERATOR
+        WHERE IdMatch = %s AND OPERATOR.Name = MVP
+        ''', id).fetchone()
+    rounds = db.execute(
+        '''
+        SELECT IdRound, RoundWinner
+        FROM RD
+        WHERE IdMatch = %s
+        ''', id).fetchall()
+    return render_template('match.html', match=match, rounds=rounds)
 
+@APP.route('/operators/search/<expr>/')
+def search_operator(expr):
+    search = { 'expr': expr }
+    expr = '%' + expr + '%'
+    operators = db.execute(
+        '''
+        SELECT IdOper, Name 
+        FROM OPERATOR
+        WHERE Name LIKE %s
+        ''', expr).fetchall()
+    return render_template('operator-search.html', search=search, operators=operators)
