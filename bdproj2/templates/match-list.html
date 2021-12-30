@@ -13,9 +13,9 @@
             <th><b>Status</b></th>
             <th><b>Map</b></th>
         </tr>
-    {% for match in matchs %}
+    {% for match in matches %}
         <tr>
-            <td><a href="/matchs/{{ match.IdMatch }}">{{ match.IdMatch }}</a> </td>
+            <td><a href="/matches/{{ match.IdMatch }}">{{ match.IdMatch }}</a> </td>
             <td>{{ match.Start }}</td>
             <td>{{ match.End }}</td>
             <td>{{ match.Status }}</td>

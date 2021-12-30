@@ -41,14 +41,14 @@ def list_rounds():
         return render_template('round-list.html', rounds=rounds)
 
 #Matchs
-@APP.route('/matchs/')
+@APP.route('/matches/')
 def list_match():
-    matchs = db.execute(
+    matches = db.execute(
         '''
         SELECT IdMatch, Start, End, Status, IdMap, Name
         FROM MATCH_R6 NATURAL JOIN MAP   
         ''').fetchall()
-    return render_template('match-list.html', matchs=matchs)
+    return render_template('match-list.html', matches=matches)
 
 """ # Rounds
 @APP.route('/rounds/')
@@ -123,7 +123,7 @@ def get_round(id):
 
     return render_template('round.html', round=round, selected=selected)
 
-@APP.route('/matchs/<int:id>/')
+@APP.route('/matches/<int:id>/')
 def get_match(id):
     match = db.execute(
         '''
