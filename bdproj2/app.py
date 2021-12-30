@@ -164,3 +164,14 @@ def get_operators():
         JOIN WEAPON USING(IdWp)
         ''').fetchall()
     return render_template('operators-list-details.html', operators=operators)
+
+@APP.route('/operators/selections/')
+def get_selections():
+    selections = db.execute(
+        '''
+        SELECT Name, Count(IdRound) AS N
+        FROM OPERATOR LEFT OUTER JOIN SELECTED USING(IdOper)
+        GROUP BY Name
+        ORDER BY N DESC, Name
+        ''').fetchall()
+    return render_template('operators-selections.html', selections=selections)

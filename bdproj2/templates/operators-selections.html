@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Operators Selections{% endblock%}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th><b>Operator</b></th>
+            <th><b>Times</b></th>
+        </tr>
+    {% for o in selections %}
+        <tr>
+            <td>{{ o.Name }}</td>
+            <td>{{ o.N }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
