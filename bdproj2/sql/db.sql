@@ -56,7 +56,7 @@ CREATE TABLE MATCH_R6(
     IdMatch     INT PRIMARY KEY AUTO_INCREMENT,
     Start       DATETIME NOT NULL,
     End         DATETIME DEFAULT NULL,
-    Status      ENUM('ON GOING', 'FINISHED') NOT NULL,
+    Status      ENUM('ONGOING', 'FINISHED') NOT NULL,
     MVP         VARCHAR(64) NOT NULL,
     MVPPOINTS   INT NOT NULL,
     IdMap       INT NOT NULL,
@@ -184,9 +184,9 @@ INSERT INTO MAP(Name) VALUES
     ("Favela");
 
 INSERT INTO MATCH_R6(IdMap, Start, End, Status, MVP, MVPPoints) VALUES
-    (2, '2020-11-17 20:30:45', '2020-11-17 20:47:02', 'FINISHED', "Thermite", 5200),
-    (4, '2020-11-19 15:35:52', '2020-11-19 16:00:14', 'FINISHED', "Wamai", 4870),
-    (3, '2020-11-25 02:32:15', '2020-11-25 03:20:56', 'ON GOING', "Mozzie", 6350);
+    (2, '2020-11-17 20:30:45', '2020-11-17 20:47:02', 'FINISHED', 1, 5200),
+    (4, '2020-11-19 15:35:52', '2020-11-19 16:00:14', 'FINISHED', 8, 4870),
+    (3, '2020-11-25 02:32:15', NULL, 'ONGOING', 13, 6350);
 
 INSERT INTO RD(RoundWinner, IdMatch) VALUES
     ('A', 1),
