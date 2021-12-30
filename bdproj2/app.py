@@ -150,3 +150,17 @@ def search_operator(expr):
         WHERE Name LIKE %s
         ''', expr).fetchall()
     return render_template('operator-search.html', search=search, operators=operators)
+
+
+@APP.route('/operators/details/')
+def get_operators():
+    operators = db.execute(
+        '''
+        SELECT IdWp, IdOper, O.Name AS Operator, O.Type, Device, 
+        ORGANIZATION.Name AS Org, GADGET.Name AS Gadget, WEAPON.Name AS Weapon
+        FROM OPERATOR O
+        JOIN ORGANIZATION USING(IdOrg) 
+        JOIN GADGET USING(IdGad)
+        JOIN WEAPON USING(IdWp)
+        ''').fetchall()
+    return render_template('operators-list-details.html', operators=operators)

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Operators List - Details{% endblock%}</h1>
+{% endblock %}
+
+{% block content %}
+    <table>
+    <tr>
+        <th><b>Operator Name</b></th>
+        <th><b>Type</b></th>
+        <th><b>Device</b></th>
+        <th><b>Organization</b></th>
+        <th><b>Gadget</b></th>
+        <th><b>Weapon</b></th>
+    </tr>
+    {% for operator in operators %}
+        <tr>
+            <td><a href="/operators/{{ operator.IdOper }}">{{ operator.Operator }}</a></td>
+            <td>{{ operator.Type }}</td>
+            <td>{{ operator.Device }}</td>
+            <td>{{ operator.Org }}</td>
+            <td>{{ operator.Gadget }}</td>
+            <td>{{ operator.Weapon }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <a style="color: grey;">A stands for Attacker and D for Defender</a>
+{% endblock %}
