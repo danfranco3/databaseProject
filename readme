@@ -1,0 +1,9 @@
+To run the application you will need to have both Python (with Flask, PyMySQL, etc) and SQL installed in your machine.
+
+Then, you need to open your shell and navigate to the sql folder inside the bdproj2 or open MySQLWorkbench and work from there, access your MySQL instance, and use db.sql as a source by typing 'source db.sql;'.
+
+From there, start by editing the db.py inside the bdproj2 folder and insert the credentials so that the app can access your MySQL instance.
+
+After you have everything setup, you are good to go!
+
+Just type in python3 server.py, open your favorite browser, type in the address chosen on server.py and voilà.
