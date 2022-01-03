@@ -1,3 +1,5 @@
+*There is a PDF explaining a little bit about the project, but it is in Portuguese :( If there is not a language barrier, I encourage you to read it!
+
 To run the application you will need to have both Python (with Flask, PyMySQL, etc) and MySQL installed in your machine.
 
 Then, you need to open your shell and navigate to the sql folder inside the bdproj2 or open MySQLWorkbench and work from there, access your MySQL instance, and use db.sql as a source by typing 'source db.sql;'.
