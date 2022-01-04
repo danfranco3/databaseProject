@@ -8,6 +8,6 @@ From there, start by editing the db.py inside the bdproj2 folder and insert the 
 
 After you have everything setup, you are good to go!
 
-Just locate the bdproj2 folder, switch to the shell window (or, if you closed it, open the shell again), type in python3 server.py, open your favorite browser, type in the address chosen on server.py and voilà.
+Just switch to the shell window (or, if you closed it, open the shell again), locate the bdproj2 folder, type in python3 server.py, open your favorite browser, type in the address chosen on server.py and voilà.
 
 Thank you for trying out the application!
